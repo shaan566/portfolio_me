@@ -54,7 +54,7 @@ function Home() {
             <br />
             <br />
             {/* social media icons */}
-            <div className="flex flex-col items-center md:flex-row justify-between space-y-6 md:space-y-0 Slide In">
+            <div className="flex flex-col items-center md:flex-row justify-between space-y-6 md:space-y-0 -translate-y-5">
               <div className="space-y-2">
                 <ul className="flex space-x-5">
                   <li>
