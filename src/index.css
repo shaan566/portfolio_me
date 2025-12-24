@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* 1. Import Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@500&display=swap");
+
+@layer base {
+  /* Set a global background color for the entire page */
+  html {
+    background-color: black; /* Forces the very top/bottom to be black */
+    color: white;
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* If you want to support a light/dark toggle: */
+  html:not(.dark) {
+    background-color: white;
+    color: #111827; /* gray-900 */
+  }
+
+  body {
+    background-color: inherit;
+    min-height: 100vh;
+    margin: 0;
+  }
+}
