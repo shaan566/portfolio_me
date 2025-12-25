@@ -55,12 +55,12 @@ function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>© 2025 Shaan Chaudhary. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+        <div className="flex flex-col md:flex-row justify-center items-center text-sm text-gray-500">
+          <p>© {new Date().getFullYear()} Shaan Chaudhary. All rights reserved.</p>
+          {/* <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-blue-500 transition">Privacy Policy</a>
             <a href="#" className="hover:text-blue-500 transition">Terms of Service</a>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

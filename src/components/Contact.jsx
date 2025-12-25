@@ -3,10 +3,12 @@ import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaCheckCircle } from "react-ico
 
 export default function Contact() {
   const [showModal, setShowModal] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    subject:""
   });
 
   const handleChange = (e) => {
@@ -19,17 +21,17 @@ export default function Contact() {
     console.log("Form Data:", formData);
     setShowModal(true);
     // Optional: Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", message: "" ,subject:""});
   };
 
   return (
-    <section id="contact" className="pt-28 pb-16 bg-black text-white min-h-screen flex items-center">
+    <section id="contact" className="pt-28 pb-16 bg-black  text-white min-h-screen flex items-center">
       <div className="max-w-6xl mx-auto px-6 w-full">
         
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-blue-400 mb-4">Contact Me</h2>
-          <div className="h-1 w-20 bg-blue-500 mx-auto rounded-full"></div>
+          {/* <div className="h-1 w-20 bg-blue-500 mx-auto rounded-full"></div> */}
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -79,7 +81,7 @@ export default function Contact() {
           {/* RIGHT SIDE: Contact Form */}
           <form
             onSubmit={handleSubmit}
-            className="bg-gray-900 p-10 rounded-3xl border border-gray-800 shadow-2xl space-y-6"
+            className="bg-gray-900 p-10 rounded-3xl border border-gray-800 shadow-2xl space-y-6  hover:-translate-y-3  hover:border-blue-500 hover:shadow-blue-500/50"
           >
             <div className="grid grid-cols-1 gap-6">
               <input
@@ -96,6 +98,15 @@ export default function Contact() {
                 name="email"
                 placeholder="Email Address"
                 value={formData.email}
+                onChange={handleChange}
+                className="w-full p-4 rounded-xl bg-black border border-gray-700 focus:border-blue-500 outline-none transition-all"
+                required
+              />
+               <input
+                type="subject"
+                name="subject"
+                placeholder="Subject..."
+                value={formData.subject}
                 onChange={handleChange}
                 className="w-full p-4 rounded-xl bg-black border border-gray-700 focus:border-blue-500 outline-none transition-all"
                 required

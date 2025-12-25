@@ -1,4 +1,4 @@
-import React from "react"
+import {useState,useRef,useEffect} from "react"
 
 const skills = [
   { name: "Java", level: 80, color: "bg-red-500" },
@@ -40,6 +40,28 @@ const badgeSkills = [
 ]
 
 export default function Skills() {
+
+  const[animate,setanimate] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setanimate(true);   // animation start
+        observer.disconnect(); // ek baar hi chale
+      }
+    },
+    { threshold: 0.3 } // 30% screen par aaye
+  );
+
+  if (sectionRef.current) {
+    observer.observe(sectionRef.current);
+  }
+
+  return () => observer.disconnect();
+}, []);
+
   return (
     <section className="py-20 bg-black text-white animate-fade-in-up">
       <div className="max-w-6xl mx-auto px-6">
@@ -48,20 +70,30 @@ export default function Skills() {
         </h2>
 
         {/* Progress Bars */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {skills.map((s) => (
+        <div 
+        ref={sectionRef}
+        className="grid md:grid-cols-2 gap-8 mb-12"
+        >
+          {skills.map((s,index) => (
             <div
-              key={s}
-              className="bg-gray-900 p-5 rounded-xl shadow-lg border border-gray-800 hover:border-blue-500 hover:shadow-blue-500/30 transition-all duration-300"
-            >
+            key={s.name}
+            className={`
+              bg-gray-900 p-5 rounded-xl shadow-lg border border-gray-800
+              transition-all duration-700 ease-out hover:-translate-y-2  hover:border-blue-500 hover:shadow-blue-500/50
+              ${animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+            `}
+            style={{
+              transitionDelay: `${Math.floor(index / 2) * 200}ms`,
+            }}
+          >
               <div className="flex justify-between mb-2">
                 <span className="font-medium">{s.name}</span>
                 <span className="text-sm text-gray-400">{s.level}%</span>
               </div>
               <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
                 <div
-                  className={`h-3 ${s.color} rounded-full transition-all duration-700`}
-                  style={{ width: `${s.level}%` }}
+                  className={`h-3 ${s.color} rounded-full transition-all duration-1000 ease-out`}
+                  style={{ width:animate ? `${s.level}%` :"0%" }}
                 />
               </div>
             </div>
@@ -69,7 +101,7 @@ export default function Skills() {
         </div>
 
         {/* Badges */}
-        <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800">
+        <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-800  hover:-translate-y-2  hover:border-blue-500 hover:shadow-blue-500/50">
           <h3 className="text-2xl font-semibold mb-6 text-blue-400">
             Technologies & Tools
           </h3>

@@ -3,7 +3,7 @@ import { FaWhatsappSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { ReactTyped } from "react-typed";
-import pic from "../assets/shaan11.png";
+import pic1 from "../assets/shaan12.png";
 import { ImGithub } from "react-icons/im";
 
 function Home() {
@@ -91,7 +91,7 @@ function Home() {
           </div>
           <div className="md:w-1/2 md:ml-48 md:mt-20 mt-8 order-1 flex justify-center items-center animate-fade-in-up">
             <img
-              src={pic}
+              src={pic1}
               className="rounded-full w-[250px] h-[250px] md:w-[400px] md:h-[400px] object-cover shadow-2xl shadow-blue-500/50"
               alt="Profile"
             />

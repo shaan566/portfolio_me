@@ -1,4 +1,4 @@
-import React from "react"
+import {useState,useRef,useEffect} from "react"
 import {
   FaCode,
   FaLaptopCode,
@@ -42,18 +42,48 @@ export default function Services() {
     },
   ]
 
+  const[Animate,setAnimate] = useState(false)
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setAnimate(true);
+        observer.disconnect();
+      }
+    },
+    { threshold: 0.2 }
+  );
+
+  if (sectionRef.current) {
+    observer.observe(sectionRef.current);
+  }
+
+  return () => observer.disconnect();
+}, []);
+
+
   return (
     <section id="services" className="py-20 bg-black text-white animate-fade-in-up">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-extrabold mb-14 text-blue-400 tracking-wide animate-fade-in-up">
+        <h2 className="text-5xl font-extrabold mb-14 text-blue-400 tracking-wide animate-fade-in-up">
           My Services
         </h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="group p-8 bg-gray-900 rounded-2xl shadow-lg border border-gray-800 hover:border-blue-500 hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-2"
-            >
+        <div ref={sectionRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {services.map((service, i) => (
+              <div
+                key={i}
+                className={`
+                  group hover:-translate-y-2
+                  bg-gray-900 p-5 rounded-xl shadow-lg border border-gray-800
+                  transition-all duration-700 ease-out  hover:border-blue-500 hover:shadow-blue-500/50
+                  ${Animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+                `}
+                style={{
+                  transitionDelay: `${Math.floor(i / 3) * 200}ms`,
+                }}
+              >
               <div className="mb-6 flex justify-center">{service.icon}</div>
               <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-blue-400 transition">
                 {service.title}
