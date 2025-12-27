@@ -39,14 +39,14 @@ function Home() {
             <br />
             <div className="mb-10">
               <Link
-                href="/projects" // scrolls to Projects section
+                to="/projects" // scrolls to Projects section
                 className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 mr-4 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 inline-block"
               >
                 View my works
               </Link>
 
               <Link
-                href="/contact" // scrolls to Contact section
+                to="/contact" // scrolls to Contact section
                 className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 inline-block"
               >
                 Get in touch
