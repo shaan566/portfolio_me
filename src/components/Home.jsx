@@ -5,6 +5,8 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { ReactTyped } from "react-typed";
 import pic1 from "../assets/shaan12.png";
 import { ImGithub } from "react-icons/im";
+import { Link } from "react-router-dom";
+
 
 function Home() {
   return (
@@ -16,7 +18,7 @@ function Home() {
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 mt-12 md:mt-24 space-y-2 order-2 md:order-1 animate-fade-in-up">
             <div className="flex space-x-1 text-2xl md:text-4xl">
-              <h1>Hello, I'm a Shaan </h1>
+              <h1>Hello, I'm  Shaan </h1>
             </div>
             <div>
               <h1 className="large-text text-6xl">
@@ -36,19 +38,19 @@ function Home() {
             <br />
             <br />
             <div className="mb-10">
-              <a
+              <Link
                 href="/projects" // scrolls to Projects section
                 className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 mr-4 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 inline-block"
               >
                 View my works
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/contact" // scrolls to Contact section
                 className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 inline-block"
               >
                 Get in touch
-              </a>
+              </Link>
             </div>
 
             <br />
