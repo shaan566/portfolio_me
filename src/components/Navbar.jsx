@@ -4,7 +4,7 @@ import { BiLogoLinkedinSquare, BiMenu, BiX } from "react-icons/bi"; // Added Men
 import { FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { TbFileCv } from "react-icons/tb";
-import { navItems } from "./Utils/navItems";
+import { navItems } from "./utils/navItems";
 import { RiTwitterXFill } from "react-icons/ri";
 
 function Navbar() {
