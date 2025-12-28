@@ -92,7 +92,7 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="md:w-1/2 md:ml-48 md:mt-20 mt-8 order-1 flex justify-center items-center animate-fade-in-up">
+          <div className="pt-16 md:pt-0 md:w-1/2 md:ml-48 md:mt-20 mt-8 order-1 flex justify-center items-center animate-fade-in-up">
             <img
               src={pic1}
               className="rounded-full w-[250px] h-[250px] md:w-[400px] md:h-[400px] object-cover shadow-2xl shadow-blue-500/50"
