@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaCheckCircle } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+
 
 export default function Contact() {
   const [showModal, setShowModal] = useState(false);
@@ -11,18 +13,64 @@ export default function Contact() {
     subject:""
   });
 
+  const sendEmail = async (data) => {
+  try {
+    const templateParams = {
+      name: data.name,
+      email: data.email,
+      subject: data.subject,
+      message: data.message,
+      time: new Date().toLocaleString()
+    };
+
+ 
+
+    const response = await emailjs.send(
+  import.meta.env.VITE_EMAILJS_SERVICE_ID,   // ✅ service id
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID,  // ✅ template id
+  templateParams,
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY    // ✅ public key
+);
+// console.log("SERVICE:", import.meta.env.VITE_EMAILJS_SERVICE_ID);
+// console.log("TEMPLATE:", import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+// console.log("PUBLIC:", import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+
+
+     console.log("Email sent successfully:", response);
+    return true;
+  } catch (error) {
+    console.error("Email sending failed:", error);
+    return false;
+  }
+};
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simulate API call
-    console.log("Form Data:", formData);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  // console.log("kuc bbhi")
+
+  // console.log("Form Data:", formData);
+
+  const isSent = await sendEmail(formData);
+
+  if (isSent) {
     setShowModal(true);
-    // Optional: Reset form
-    setFormData({ name: "", email: "", message: "" ,subject:""});
-  };
+
+    // reset form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  } else {
+    alert("Failed to send email. Please try again.");
+  }
+};
+
 
   return (
     <section id="contact" className="pt-28 pb-16 bg-black  text-white min-h-screen flex items-center">
