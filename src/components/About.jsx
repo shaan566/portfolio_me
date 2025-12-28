@@ -3,6 +3,7 @@ import pic from "../assets/shaan11.png";
 import { FaWhatsappSquare, FaLinkedin, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { ImGithub } from "react-icons/im";
+import { RiTwitterXFill } from "react-icons/ri";
 
 function About() {
   return (
@@ -19,7 +20,7 @@ function About() {
           <div className="animate-fade-in-up">
             <img
               src={pic}
-              className="w-[250px] h-[250px] md:w-[350px] md:h-[350px] object-cover shadow-2xl shadow-blue-500/50 rounded-2xl"
+              className="w-\[250px] h-\[250px] md:w-\[350px] md:h-\[350px] object-cover shadow-2xl shadow-blue-500/50 rounded-2xl"
               alt="Profile"
             />
           </div>
@@ -29,9 +30,9 @@ function About() {
           <div className="flex flex-col items-center md:items-start space-y-4">
             <ul className="flex space-x-5">
               <li>
-                <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://x.com/ch60868207" target="_blank" rel="noopener noreferrer">
                   <div className="rounded-full bg-gray-800 p-3 hover:bg-blue-600 transition-colors duration-300 cursor-pointer">
-                    <FaWhatsappSquare size={24} />
+                    <RiTwitterXFill size={24} />
                   </div>
                 </a>
               </li>

@@ -5,6 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { TbFileCv } from "react-icons/tb";
 import { navItems } from "./Utils/navItems";
+import { RiTwitterXFill } from "react-icons/ri";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
@@ -42,7 +43,7 @@ function Navbar() {
               <BiLogoLinkedinSquare size={26} className="hover:text-blue-500 transition-colors duration-300" />
             </a>
             <a href="https://x.com/ch60868207" target="_blank" rel="noopener noreferrer">
-              <BsTwitterX size={26} className="hover:text-blue-300 transition-colors duration-300" />
+              <RiTwitterXFill size={26} className="hover:text-blue-300 transition-colors duration-300" />
             </a>
             <a href="https://www.instagram.com/learn_code147/?hl=en" target="_blank" rel="noopener noreferrer">
               <FaInstagram size={26} className="hover:text-blue-500 transition-colors duration-300" />

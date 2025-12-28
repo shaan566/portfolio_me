@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTwitter, FaInstagram, FaLinkedinIn, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
+import { RiTwitterXFill } from "react-icons/ri";
 
 function Footer() {
   return (
@@ -40,7 +41,7 @@ function Footer() {
               </a>
               <a href="https://x.com/ch60868207" target="_blank" rel="noopener noreferrer"
                  className="bg-gray-900 p-2 rounded-lg hover:bg-blue-600 transition duration-300">
-                <FaTwitter size={20} />
+                <RiTwitterXFill size={20} />
               </a>
               <a href="https://www.instagram.com/learn_code147/?hl=en" target="_blank" rel="noopener noreferrer"
                  className="bg-gray-900 p-2 rounded-lg hover:bg-blue-600 transition duration-300">

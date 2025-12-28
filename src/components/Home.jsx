@@ -6,6 +6,7 @@ import { ReactTyped } from "react-typed";
 import pic1 from "../assets/shaan12.png";
 import { ImGithub } from "react-icons/im";
 import { Link } from "react-router-dom";
+import { RiTwitterXFill } from "react-icons/ri";
 
 
 function Home() {
@@ -60,9 +61,9 @@ function Home() {
               <div className="space-y-2">
                 <ul className="flex space-x-5">
                   <li>
-                    <a href="https://www.whatsapp.com" target="_blank" rel="noopener noreferrer">
+                    <a href="https://x.com/ch60868207" target="_blank" rel="noopener noreferrer">
                       <div className="rounded-full bg-gray-800 p-3 hover:bg-blue-600 transition-colors duration-300 cursor-pointer">
-                        <FaWhatsappSquare size={24} />
+                        <RiTwitterXFill size={24} />
                       </div>
                     </a>
                   </li>
