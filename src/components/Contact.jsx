@@ -12,6 +12,9 @@ export default function Contact() {
     message: "",
     subject:""
   });
+  const [isSending, setIsSending] = useState(false);
+  const [errors,seterrors] = useState({});
+
 
   const sendEmail = async (data) => {
   try {
@@ -44,6 +47,31 @@ export default function Contact() {
   }
 };
 
+const validateForm = () => {
+  let newErrors = {}
+
+  if(!formData.name.trim()){
+    newErrors.name = "Name is required";
+  }
+
+  if(!formData.email.trim()){
+    newErrors.email = "Email is required"
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    newErrors.email = "Enter a valid email";
+  }
+  if (!formData.subject.trim()) {
+    newErrors.subject = "Subject is required";
+  }
+
+  if (!formData.message.trim()) {
+    newErrors.message = "Message is required";
+  }
+
+  seterrors(newErrors);
+
+  // If no errors → valid
+  return Object.keys(newErrors).length === 0;
+}
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -52,10 +80,16 @@ export default function Contact() {
   e.preventDefault();
   // console.log("kuc bbhi")
 
+  if (!validateForm()) {
+    return; // ❌ stop submission
+  }
+
   // console.log("Form Data:", formData);
+  setIsSending(true);
 
   const isSent = await sendEmail(formData);
 
+  setIsSending(false);
   if (isSent) {
     setShowModal(true);
 
@@ -89,7 +123,9 @@ export default function Contact() {
             <div>
               <h3 className="text-3xl font-semibold mb-4 text-white">Let's Connect</h3>
               <p className="text-gray-400 text-lg">
-                I am interested in freelance opportunities and full-time roles. Let's build something amazing together.
+               Open to full-time roles and freelance projects.
+                I enjoy turning ideas into scalable, high-quality products.
+                Let`s create solutions that deliver real value.
               </p>
             </div>
 
@@ -103,6 +139,7 @@ export default function Contact() {
                   <p className="text-xl font-medium">workingshaan@gmail.com</p>
                 </div>
               </div>
+              <br></br>
 
               <div className="flex items-center gap-6">
                 <div className="w-12 h-12 bg-gray-900 flex items-center justify-center rounded-xl border border-gray-700 text-blue-500">
@@ -129,18 +166,24 @@ export default function Contact() {
           {/* RIGHT SIDE: Contact Form */}
           <form
             onSubmit={handleSubmit}
-            className="bg-gray-900 p-10 rounded-3xl border border-gray-800 shadow-2xl space-y-6  hover:-translate-y-3  hover:border-blue-500 hover:shadow-blue-500/50"
+            className="bg-gray-900 p-10 rounded-3xl border border-gray-800 shadow-2xl space-y-6  "
           >
             <div className="grid grid-cols-1 gap-6">
               <input
                 type="text"
                 name="name"
+                maxLength={50}
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full p-4 rounded-xl bg-black border border-gray-700 focus:border-blue-500 outline-none transition-all"
-                required
+                // required
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name}
+                </p>
+              )}
               <input
                 type="email"
                 name="email"
@@ -148,33 +191,56 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 className="w-full p-4 rounded-xl bg-black border border-gray-700 focus:border-blue-500 outline-none transition-all"
-                required
-              />
+                // required
+              />{
+                errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email}
+                  </p>
+                )
+              }
                <input
                 type="subject"
                 name="subject"
+                maxLength={100}
                 placeholder="Subject..."
                 value={formData.subject}
                 onChange={handleChange}
                 className="w-full p-4 rounded-xl bg-black border border-gray-700 focus:border-blue-500 outline-none transition-all"
-                required
+                // required
               />
+              {errors.subject && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.subject}
+                </p>
+              )}
               <textarea
                 name="message"
                 placeholder="How can I help you?"
                 rows="5"
+                maxLength={500}
                 value={formData.message}
                 onChange={handleChange}
                 className="w-full p-4 rounded-xl bg-black border border-gray-700 focus:border-blue-500 outline-none transition-all resize-none"
-                required
+                // required
               ></textarea>
+              {errors.message && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.message}
+                </p>
+              )}
             </div>
-
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-900/20 transition-all transform hover:-translate-y-1"
+              disabled={isSending}
+              className={`w-full py-4 rounded-xl font-bold text-lg shadow-lg transition-all transform
+                ${isSending
+                  ? "bg-blue-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-500 hover:-translate-y-1 shadow-blue-900/20"
+                }
+              `}
             >
-              Send Message
+              {isSending ? "Sending Message..." : "Send Message"}
             </button>
           </form>
         </div>
@@ -182,7 +248,7 @@ export default function Contact() {
 
       {/* SUCCESS MODAL */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-\[100] flex items-center justify-center px-4">
           {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-black/80 backdrop-blur-sm"
